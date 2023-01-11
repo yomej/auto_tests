@@ -19,3 +19,15 @@ class ProductPage(BasePage):
     def go_to_cart(self):
         cart_button = self.browser.find_element(*ProductPageLocators.ADD_TO_CART)
         cart_button.click()
+
+    def product_name(self):
+        product_name_cart = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_CART)
+        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME)
+        assert product_name.text in product_name_cart.text, "Match not found"
+        print("Cool")
+
+    def product_price(self):
+        product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE)
+        product_price_cart = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE_CART)
+        assert product_price.text == product_price_cart.text, "Match not found"
+        print("Cool(x2)")
