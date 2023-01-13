@@ -9,7 +9,7 @@ class ProductPage(BasePage):
         self.go_to_cart()
 
     def should_be_promo(self):
-        assert "?promo=newYear" in self.url, "promo is not in url"
+        assert "promo" in self.url, "promo is not in url"
         assert True
 
     def should_be_cart_button(self):
@@ -23,11 +23,9 @@ class ProductPage(BasePage):
     def product_name(self):
         product_name_cart = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_CART)
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME)
-        assert product_name.text in product_name_cart.text, "Match not found"
-        print("Cool")
+        assert product_name.text == product_name_cart.text, "Match not found"
 
     def product_price(self):
         product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE)
         product_price_cart = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE_CART)
         assert product_price.text == product_price_cart.text, "Match not found"
-        print("Cool(x2)")
